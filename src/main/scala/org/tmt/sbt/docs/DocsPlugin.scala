@@ -48,25 +48,33 @@ object DocsPlugin extends AutoPlugin {
         "github.base_url"     → githubBaseUrl(gitCurrentRepo.value, version.value),
         "extref.csw.base_url" → s"https://tmtsoftware.github.io/csw/${readVersion("CSW_VERSION")}/%s",
         "extref.esw.base_url" → s"https://tmtsoftware.github.io/esw/${readVersion("ESW_VERSION")}/%s"
-      ),
-      (mappings in makeSite) := {
-        val Version      = version.value
-        val siteMappings = (mappings in makeSite).value
+      )
+    ) ++ makeSiteMappings()
 
-        // copy all artifacts inside `parentDir` directory
-        val siteMappingsWithoutVersion = siteMappings.map {
-          case (file, output) => (file, s"/${docsParentDir.value}/" + output)
-        }
-        val siteMappingsWithVersion = siteMappings.map {
-          case (file, output) => (file, s"/${docsParentDir.value}/" + Version + output)
-        }
+  def makeSiteMappings(project: Project = null) = Def.settings {
+    Seq(mappings in makeSite := {
+      val Version = version.value
+      val siteMappings =
+        Def.taskDyn {
+          val default = (mappings in makeSite).value
+          if (project == null) Def.task(default)
+          else Def.task(default ++ (mappings in makeSite in project).value)
+        }.value
 
-        // keep documentation for SNAPSHOT versions in SNAPSHOT directory. (Don't copy SNAPSHOT docs to top level)
-        // If not SNAPSHOT version, then copy latest version of documentation to top level as well as inside corresponding version directory
-        if (Version.endsWith("-SNAPSHOT")) siteMappingsWithVersion
-        else siteMappingsWithoutVersion ++ siteMappingsWithVersion
+      // copy all artifacts inside `parentDir` directory
+      val siteMappingsWithoutVersion = siteMappings.map {
+        case (file, output) => (file, s"/${docsParentDir.value}/" + output)
       }
-    )
+      val siteMappingsWithVersion = siteMappings.map {
+        case (file, output) => (file, s"/${docsParentDir.value}/" + Version + output)
+      }
+
+      // keep documentation for SNAPSHOT versions in SNAPSHOT directory. (Don't copy SNAPSHOT docs to top level)
+      // If not SNAPSHOT version, then copy latest version of documentation to top level as well as inside corresponding version directory
+      if (Version.endsWith("-SNAPSHOT")) siteMappingsWithVersion
+      else siteMappingsWithoutVersion ++ siteMappingsWithVersion
+    })
+  }
 
   // export CSW_VERSION env variable which is compatible with csw
   private def readVersion(envVersionKey: String): String =
