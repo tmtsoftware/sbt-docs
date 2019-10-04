@@ -15,7 +15,7 @@ import sbt.plugins.JvmPlugin
 
 object DocsPlugin extends AutoPlugin {
 
-  override def trigger = allRequirements
+  override def trigger = noTrigger
 
   override def requires: Plugins = JvmPlugin && GhpagesPlugin && ParadoxSitePlugin && ParadoxMaterialThemePlugin
 
@@ -36,9 +36,11 @@ object DocsPlugin extends AutoPlugin {
       GitKeys.gitRemoteRepo := docsRepo.value,
       sourceDirectory in Paradox := baseDirectory.value / "src" / "main",
       sourceDirectory in (Paradox, paradoxTheme) := (sourceDirectory in Paradox).value / "_template",
-      paradoxMaterialTheme in Paradox ~= {
-        _.withFavicon("assets/tmt_favicon.ico")
-          .withRepository(new URI("https://github.com/tmtsoftware/csw"))
+      paradoxMaterialTheme in Paradox := {
+        val repo = gitCurrentRepo.value
+        (paradoxMaterialTheme in Paradox).value
+          .withFavicon("assets/tmt_favicon.ico")
+          .withRepository(new URI(repo))
       },
       paradoxProperties in Paradox ++= Map(
         "version"             → version.value,
