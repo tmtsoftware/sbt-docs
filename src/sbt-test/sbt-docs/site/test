@@ -1,0 +1,12 @@
+> makeSite
+
+$ must-mirror target/site/sbt-docs/0.1-SNAPSHOT/a.html expected/a.html
+$ must-mirror target/site/sbt-docs/0.1-SNAPSHOT/a/a.html expected/a/a.html
+$ must-mirror target/site/sbt-docs/0.1-SNAPSHOT/a/b.html expected/a/b.html
+$ must-mirror target/site/sbt-docs/0.1-SNAPSHOT/a/c.html expected/a/c.html
+$ must-mirror target/site/sbt-docs/0.1-SNAPSHOT/b/a.html expected/b/a.html
+$ must-mirror target/site/sbt-docs/0.1-SNAPSHOT/b/a/a.html expected/b/a/a.html
+$ must-mirror target/site/sbt-docs/0.1-SNAPSHOT/b/b.html expected/b/b.html
+$ must-mirror target/site/sbt-docs/0.1-SNAPSHOT/c/a.html expected/c/a.html
+$ must-mirror target/site/sbt-docs/0.1-SNAPSHOT/css/page.css expected/css/page.css
+$ must-mirror target/site/sbt-docs/0.1-SNAPSHOT/images/a.png expected/images/a.png
