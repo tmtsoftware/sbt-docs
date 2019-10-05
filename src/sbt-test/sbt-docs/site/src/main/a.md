@@ -2,8 +2,6 @@
 
 This is "A" site.
 
-Version is @var[project.version].
-
 Next is the TOC.
 
 @@ toc

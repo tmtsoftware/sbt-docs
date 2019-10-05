@@ -7,7 +7,6 @@
 <body>
 <a href="$page.base$">base</a>
 $page.home.html$
-$page.properties.("project.version")$
 $page.breadcrumbs$
 $page.navigation$
 $page.prev.html$

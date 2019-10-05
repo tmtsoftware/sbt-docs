@@ -1,10 +1,9 @@
-version in ThisBuild := "0.1-SNAPSHOT"
-
 lazy val docs = project
   .in(file("."))
   .enablePlugins(DocsPlugin)
   .settings(
     name := "Docs Test",
+    version := "0.1-SNAPSHOT",
     docsRepo := "https://github.com/tmtsoftware/sbt-docs",
     docsParentDir := "sbt-docs",
     gitCurrentRepo := "https://github.com/tmtsoftware/sbt-docs",

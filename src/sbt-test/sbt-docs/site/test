@@ -1,5 +1,6 @@
 > makeSite
 
+# Verify files get generated in 0.1-SNAPSHOT folder
 $ must-mirror target/site/sbt-docs/0.1-SNAPSHOT/a.html expected/a.html
 $ must-mirror target/site/sbt-docs/0.1-SNAPSHOT/a/a.html expected/a/a.html
 $ must-mirror target/site/sbt-docs/0.1-SNAPSHOT/a/b.html expected/a/b.html
@@ -10,3 +11,42 @@ $ must-mirror target/site/sbt-docs/0.1-SNAPSHOT/b/b.html expected/b/b.html
 $ must-mirror target/site/sbt-docs/0.1-SNAPSHOT/c/a.html expected/c/a.html
 $ must-mirror target/site/sbt-docs/0.1-SNAPSHOT/css/page.css expected/css/page.css
 $ must-mirror target/site/sbt-docs/0.1-SNAPSHOT/images/a.png expected/images/a.png
+
+# Verify files does not get generated at top level because version contains SNAPSHOT
+-$ must-mirror target/site/sbt-docs/a.html expected/a.html
+-$ must-mirror target/site/sbt-docs/a/a.html expected/a/a.html
+-$ must-mirror target/site/sbt-docs/a/b.html expected/a/b.html
+-$ must-mirror target/site/sbt-docs/a/c.html expected/a/c.html
+-$ must-mirror target/site/sbt-docs/b/a.html expected/b/a.html
+-$ must-mirror target/site/sbt-docs/b/a/a.html expected/b/a/a.html
+-$ must-mirror target/site/sbt-docs/b/b.html expected/b/b.html
+-$ must-mirror target/site/sbt-docs/c/a.html expected/c/a.html
+-$ must-mirror target/site/sbt-docs/css/page.css expected/css/page.css
+-$ must-mirror target/site/sbt-docs/images/a.png expected/images/a.png
+
+> 'set version := "1.0.0"'
+> makeSite
+
+# Verify files get generated in 1.0.0 folder
+$ must-mirror target/site/sbt-docs/1.0.0/a.html expected/a.html
+$ must-mirror target/site/sbt-docs/1.0.0/a/a.html expected/a/a.html
+$ must-mirror target/site/sbt-docs/1.0.0/a/b.html expected/a/b.html
+$ must-mirror target/site/sbt-docs/1.0.0/a/c.html expected/a/c.html
+$ must-mirror target/site/sbt-docs/1.0.0/b/a.html expected/b/a.html
+$ must-mirror target/site/sbt-docs/1.0.0/b/a/a.html expected/b/a/a.html
+$ must-mirror target/site/sbt-docs/1.0.0/b/b.html expected/b/b.html
+$ must-mirror target/site/sbt-docs/1.0.0/c/a.html expected/c/a.html
+$ must-mirror target/site/sbt-docs/1.0.0/css/page.css expected/css/page.css
+$ must-mirror target/site/sbt-docs/1.0.0/images/a.png expected/images/a.png
+
+# Verify files get generated at top level folder
+$ must-mirror target/site/sbt-docs/a.html expected/a.html
+$ must-mirror target/site/sbt-docs/a/a.html expected/a/a.html
+$ must-mirror target/site/sbt-docs/a/b.html expected/a/b.html
+$ must-mirror target/site/sbt-docs/a/c.html expected/a/c.html
+$ must-mirror target/site/sbt-docs/b/a.html expected/b/a.html
+$ must-mirror target/site/sbt-docs/b/a/a.html expected/b/a/a.html
+$ must-mirror target/site/sbt-docs/b/b.html expected/b/b.html
+$ must-mirror target/site/sbt-docs/c/a.html expected/c/a.html
+$ must-mirror target/site/sbt-docs/css/page.css expected/css/page.css
+$ must-mirror target/site/sbt-docs/images/a.png expected/images/a.png
