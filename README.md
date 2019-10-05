@@ -6,6 +6,33 @@ SBT plugin for publishing markdown documentation to github pages
 
 This plugin requires sbt 1.0.0+
 
+## Getting Started
+
+### Setup
+Create `project/plugins.sbt`:
+
+```sbt 
+resolvers += Resolver.bintrayRepo("twtmt", "sbt-plugins")
+addSbtPlugin("com.github.tmtsoftware" % "sbt-docs" % "0.1.1")
+```
+
+Inside `build.sbt`, add `DocsPlugin` to a subproject:
+
+```sbt
+lazy val docs = project
+  .in(file("."))
+  .enablePlugins(DocsPlugin)
+  .settings(
+    docsRepo := "https://github.com/tmtsoftware/sbt-docs",
+    docsParentDir := "sbt-docs",
+    gitCurrentRepo := "https://github.com/tmtsoftware/sbt-docs"
+  )
+```
+
+- *docsRepo*: The remote git repository where documents will be published"
+- *docsParentDir*: Parent directory where generated documentation will be published
+- *gitCurrentRepo*: The remote git repository associated with this project
+    
 ### Testing
 
 Run `test` for regular unit tests.
