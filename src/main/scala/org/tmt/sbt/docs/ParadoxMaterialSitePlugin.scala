@@ -1,13 +1,13 @@
 package org.tmt.sbt.docs
 
 import _root_.io.github.jonas.paradox.material.theme.ParadoxMaterialThemePlugin
+import _root_.io.github.jonas.paradox.material.theme.ParadoxMaterialThemePlugin.autoImport._
 import com.lightbend.paradox.sbt.ParadoxPlugin.autoImport._
 import com.typesafe.sbt.site.paradox.ParadoxSitePlugin
 import com.typesafe.sbt.site.paradox.ParadoxSitePlugin.autoImport._
-import org.tmt.sbt.docs.GithubPublishPlugin.autoImport.{docsParentDir, gitCurrentRepo}
+import org.tmt.sbt.docs.DocKeys._
 import sbt.Keys.{baseDirectory, scalaBinaryVersion, sourceDirectory, version}
 import sbt._
-import _root_.io.github.jonas.paradox.material.theme.ParadoxMaterialThemePlugin.autoImport._
 
 /**
  * Enables paradox documentation and material theme

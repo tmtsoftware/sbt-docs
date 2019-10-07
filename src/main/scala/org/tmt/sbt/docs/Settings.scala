@@ -1,11 +1,10 @@
 package org.tmt.sbt.docs
 
 import com.typesafe.sbt.site.SitePlugin.autoImport._
-import org.tmt.sbt.docs.GithubPublishPlugin.autoImport.docsParentDir
+import org.tmt.sbt.docs.DocKeys._
 import sbt.Keys._
 import sbt._
-import sbtunidoc.BaseUnidocPlugin.autoImport
-import sbtunidoc.BaseUnidocPlugin.autoImport.unidoc
+import sbtunidoc.BaseUnidocPlugin.autoImport._
 import sbtunidoc.JavaUnidocPlugin.autoImport.JavaUnidoc
 import sbtunidoc.ScalaUnidocPlugin.autoImport.ScalaUnidoc
 
@@ -40,8 +39,8 @@ object Settings {
 
   def docExclusions(projects: Seq[ProjectReference]): Seq[Setting[_]] =
     projects.map(p => sources in (Compile, doc) in p := Seq.empty) ++ Seq(
-      autoImport.unidocProjectFilter in (ScalaUnidoc, unidoc) := inAnyProject -- inProjects(projects: _*),
-      autoImport.unidocProjectFilter in (JavaUnidoc, unidoc) := inAnyProject -- inProjects(projects: _*)
+      unidocProjectFilter in (ScalaUnidoc, unidoc) := inAnyProject -- inProjects(projects: _*),
+      unidocProjectFilter in (JavaUnidoc, unidoc) := inAnyProject -- inProjects(projects: _*)
     )
 
 }

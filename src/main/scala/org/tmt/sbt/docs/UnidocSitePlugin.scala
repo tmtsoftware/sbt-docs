@@ -1,7 +1,7 @@
 package org.tmt.sbt.docs
 
 import sbt.Keys._
-import sbt.{AutoPlugin, File, Plugins, Setting, Task, TaskKey}
+import sbt._
 
 /**
  * Configures UnidocPlugin

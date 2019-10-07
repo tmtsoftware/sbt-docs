@@ -12,6 +12,10 @@ $ must-mirror target/site/sbt-docs/0.1-SNAPSHOT/c/a.html expected/c/a.html
 $ must-mirror target/site/sbt-docs/0.1-SNAPSHOT/css/page.css expected/css/page.css
 $ must-mirror target/site/sbt-docs/0.1-SNAPSHOT/images/a.png expected/images/a.png
 
+# scaladoc and javadoc
+$ exists target/site/sbt-docs/0.1-SNAPSHOT/api/scala/Api.html
+$ exists target/site/sbt-docs/0.1-SNAPSHOT/api/java/IApi.html
+
 # Verify files does not get generated at top level because version contains SNAPSHOT
 -$ must-mirror target/site/sbt-docs/a.html expected/a.html
 -$ must-mirror target/site/sbt-docs/a/a.html expected/a/a.html
@@ -23,6 +27,8 @@ $ must-mirror target/site/sbt-docs/0.1-SNAPSHOT/images/a.png expected/images/a.p
 -$ must-mirror target/site/sbt-docs/c/a.html expected/c/a.html
 -$ must-mirror target/site/sbt-docs/css/page.css expected/css/page.css
 -$ must-mirror target/site/sbt-docs/images/a.png expected/images/a.png
+-$ exists target/site/sbt-docs/api/scala/Api.html
+-$ exists target/site/sbt-docs/api/java/IApi.html
 
 > 'set version := "1.0.0"'
 > makeSite
@@ -39,6 +45,10 @@ $ must-mirror target/site/sbt-docs/1.0.0/c/a.html expected/c/a.html
 $ must-mirror target/site/sbt-docs/1.0.0/css/page.css expected/css/page.css
 $ must-mirror target/site/sbt-docs/1.0.0/images/a.png expected/images/a.png
 
+# scaladoc and javadoc
+$ exists target/site/sbt-docs/0.1-SNAPSHOT/api/scala/Api.html
+$ exists target/site/sbt-docs/0.1-SNAPSHOT/api/java/IApi.html
+
 # Verify files get generated at top level folder
 $ must-mirror target/site/sbt-docs/a.html expected/a.html
 $ must-mirror target/site/sbt-docs/a/a.html expected/a/a.html
@@ -50,3 +60,7 @@ $ must-mirror target/site/sbt-docs/b/b.html expected/b/b.html
 $ must-mirror target/site/sbt-docs/c/a.html expected/c/a.html
 $ must-mirror target/site/sbt-docs/css/page.css expected/css/page.css
 $ must-mirror target/site/sbt-docs/images/a.png expected/images/a.png
+
+# scaladoc and javadoc
+$ exists target/site/sbt-docs/api/scala/Api.html
+$ exists target/site/sbt-docs/api/java/IApi.html
