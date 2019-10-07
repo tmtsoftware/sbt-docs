@@ -1,7 +1,4 @@
 
-/**
- * Demo java API
- */
 public interface IApi {
     /**
      * Reads data from file in string

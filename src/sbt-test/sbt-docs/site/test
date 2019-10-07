@@ -46,8 +46,8 @@ $ must-mirror target/site/sbt-docs/1.0.0/css/page.css expected/css/page.css
 $ must-mirror target/site/sbt-docs/1.0.0/images/a.png expected/images/a.png
 
 # scaladoc and javadoc
-$ exists target/site/sbt-docs/0.1-SNAPSHOT/api/scala/Api.html
-$ exists target/site/sbt-docs/0.1-SNAPSHOT/api/java/IApi.html
+$ exists target/site/sbt-docs/1.0.0/api/scala/Api.html
+$ exists target/site/sbt-docs/1.0.0/api/java/IApi.html
 
 # Verify files get generated at top level folder
 $ must-mirror target/site/sbt-docs/a.html expected/a.html

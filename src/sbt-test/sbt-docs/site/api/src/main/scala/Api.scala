@@ -1,6 +1,3 @@
-/**
- * Demo scala API
- */
 trait Api {
 
   /**
