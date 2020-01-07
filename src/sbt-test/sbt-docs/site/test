@@ -1,20 +1,20 @@
 > makeSite
 
-# Verify files get generated in 0.1-SNAPSHOT folder
-$ must-mirror target/site/sbt-docs/0.1-SNAPSHOT/a.html expected/a.html
-$ must-mirror target/site/sbt-docs/0.1-SNAPSHOT/a/a.html expected/a/a.html
-$ must-mirror target/site/sbt-docs/0.1-SNAPSHOT/a/b.html expected/a/b.html
-$ must-mirror target/site/sbt-docs/0.1-SNAPSHOT/a/c.html expected/a/c.html
-$ must-mirror target/site/sbt-docs/0.1-SNAPSHOT/b/a.html expected/b/a.html
-$ must-mirror target/site/sbt-docs/0.1-SNAPSHOT/b/a/a.html expected/b/a/a.html
-$ must-mirror target/site/sbt-docs/0.1-SNAPSHOT/b/b.html expected/b/b.html
-$ must-mirror target/site/sbt-docs/0.1-SNAPSHOT/c/a.html expected/c/a.html
-$ must-mirror target/site/sbt-docs/0.1-SNAPSHOT/css/page.css expected/css/page.css
-$ must-mirror target/site/sbt-docs/0.1-SNAPSHOT/images/a.png expected/images/a.png
+# Verify files get generated in 0.1.0-SNAPSHOT folder
+$ must-mirror target/site/sbt-docs/0.1.0-SNAPSHOT/a.html expected/a.html
+$ must-mirror target/site/sbt-docs/0.1.0-SNAPSHOT/a/a.html expected/a/a.html
+$ must-mirror target/site/sbt-docs/0.1.0-SNAPSHOT/a/b.html expected/a/b.html
+$ must-mirror target/site/sbt-docs/0.1.0-SNAPSHOT/a/c.html expected/a/c.html
+$ must-mirror target/site/sbt-docs/0.1.0-SNAPSHOT/b/a.html expected/b/a.html
+$ must-mirror target/site/sbt-docs/0.1.0-SNAPSHOT/b/a/a.html expected/b/a/a.html
+$ must-mirror target/site/sbt-docs/0.1.0-SNAPSHOT/b/b.html expected/b/b.html
+$ must-mirror target/site/sbt-docs/0.1.0-SNAPSHOT/c/a.html expected/c/a.html
+$ must-mirror target/site/sbt-docs/0.1.0-SNAPSHOT/css/page.css expected/css/page.css
+$ must-mirror target/site/sbt-docs/0.1.0-SNAPSHOT/images/a.png expected/images/a.png
 
 # scaladoc and javadoc
-$ exists target/site/sbt-docs/0.1-SNAPSHOT/api/scala/Api.html
-$ exists target/site/sbt-docs/0.1-SNAPSHOT/api/java/IApi.html
+$ exists target/site/sbt-docs/0.1.0-SNAPSHOT/api/scala/Api.html
+$ exists target/site/sbt-docs/0.1.0-SNAPSHOT/api/java/IApi.html
 
 # Verify files does not get generated at top level because version contains SNAPSHOT
 -$ must-mirror target/site/sbt-docs/a.html expected/a.html

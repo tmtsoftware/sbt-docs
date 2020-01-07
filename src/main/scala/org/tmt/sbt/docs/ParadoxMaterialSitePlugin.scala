@@ -43,12 +43,12 @@ object ParadoxMaterialSitePlugin extends AutoPlugin {
   private def readVersion(envVersionKey: String): String =
     (sys.env ++ sys.props).get(envVersionKey) match {
       case Some(v) => v
-      case None    => "0.1-SNAPSHOT"
+      case None    => "0.1.0-SNAPSHOT"
     }
 
   private def githubBaseUrl(repo: String, version: String) = {
     val baseRepoUrl = s"$repo/tree"
-    if (version == "0.1-SNAPSHOT") s"$baseRepoUrl/master"
+    if (version == "0.1.0-SNAPSHOT") s"$baseRepoUrl/master"
     else s"$baseRepoUrl/v$version"
   }
 }
