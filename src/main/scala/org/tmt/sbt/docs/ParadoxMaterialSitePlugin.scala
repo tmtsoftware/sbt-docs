@@ -33,7 +33,8 @@ object ParadoxMaterialSitePlugin extends AutoPlugin {
           "scala.binaryVersion" -> scalaBinaryVersion.value,
           "scaladoc.base_url"   -> s"https://tmtsoftware.github.io/${docsParentDir.value}/${version.value}/api/scala",
           "javadoc.base_url"    -> s"https://tmtsoftware.github.io/${docsParentDir.value}/${version.value}/api/java",
-          "github.base_url"     -> githubBaseUrl(gitCurrentRepo.value, version.value),
+          "github.dir.base_url" -> githubBaseUrl(gitCurrentRepo.value, version.value, "tree"),
+          "github.base_url"     -> githubBaseUrl(gitCurrentRepo.value, version.value, "blob"),
           "extref.csw.base_url" -> s"https://tmtsoftware.github.io/csw/${readVersion("CSW_VERSION")}/%s",
           "extref.esw.base_url" -> s"https://tmtsoftware.github.io/esw/${readVersion("ESW_VERSION")}/%s"
         )
@@ -46,9 +47,9 @@ object ParadoxMaterialSitePlugin extends AutoPlugin {
       case None    => "0.1.0-SNAPSHOT"
     }
 
-  private def githubBaseUrl(repo: String, version: String) = {
-    val baseRepoUrl = s"$repo/tree"
-    if (version == "0.1.0-SNAPSHOT") s"$baseRepoUrl/master"
+  private def githubBaseUrl(repo: String, version: String, baseForGithub: String) = {
+    val baseRepoUrl = s"$repo/$baseForGithub" //baseForGithub will be tree for a github directory and blob for a github file to avoid 301 redirect error on link validation
+    if (version.endsWith("SNAPSHOT")) s"$baseRepoUrl/master"
     else s"$baseRepoUrl/v$version"
   }
 }

@@ -1,6 +1,6 @@
 name := """sbt-docs"""
 organization := "com.github.tmtsoftware"
-version := "0.1.3-RC1"
+version := "0.1.3-RC2"
 description := "An sbt plugin for publishing markdown documentation to github pages"
 homepage := scmInfo.value map (_.browseUrl)
 scmInfo := Some(ScmInfo(url("https://github.com/tmtsoftware/sbt-docs"), "scm:git:git@github.com:tmtsoftware/sbt-docs.git"))
