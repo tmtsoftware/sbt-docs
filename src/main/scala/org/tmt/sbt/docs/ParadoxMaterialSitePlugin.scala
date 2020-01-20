@@ -29,14 +29,15 @@ object ParadoxMaterialSitePlugin extends AutoPlugin {
             .withRepository(new URI(repo))
         },
         paradoxProperties in Paradox ++= Map(
-          "version"             -> version.value,
-          "scala.binaryVersion" -> scalaBinaryVersion.value,
-          "scaladoc.base_url"   -> s"https://tmtsoftware.github.io/${docsParentDir.value}/${version.value}/api/scala",
-          "javadoc.base_url"    -> s"https://tmtsoftware.github.io/${docsParentDir.value}/${version.value}/api/java",
-          "github.dir.base_url" -> githubBaseUrl(gitCurrentRepo.value, version.value, "tree"),
-          "github.base_url"     -> githubBaseUrl(gitCurrentRepo.value, version.value, "blob"),
-          "extref.csw.base_url" -> s"https://tmtsoftware.github.io/csw/${readVersion("CSW_VERSION")}/%s",
-          "extref.esw.base_url" -> s"https://tmtsoftware.github.io/esw/${readVersion("ESW_VERSION")}/%s"
+          "version"                      -> version.value,
+          "scala.binaryVersion"          -> scalaBinaryVersion.value,
+          "scaladoc.base_url"            -> s"https://tmtsoftware.github.io/${docsParentDir.value}/${version.value}/api/scala",
+          "javadoc.base_url"             -> s"https://tmtsoftware.github.io/${docsParentDir.value}/${version.value}/api/java",
+          "github.dir.base_url"          -> githubBaseUrl(gitCurrentRepo.value, version.value, "tree"),
+          "github.base_url"              -> githubBaseUrl(gitCurrentRepo.value, version.value, "blob"),
+          "extref.csw.base_url"          -> s"https://tmtsoftware.github.io/csw/${readVersion("CSW_VERSION")}/%s",
+          "extref.esw.base_url"          -> s"https://tmtsoftware.github.io/esw/${readVersion("ESW_VERSION")}/%s",
+          "extref.csw_scaladoc.base_url" -> s"https://tmtsoftware.github.io/csw/${readVersion("CSW_VERSION")}/api/scala/%s"
         )
       )
 
