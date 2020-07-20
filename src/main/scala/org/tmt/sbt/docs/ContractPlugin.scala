@@ -24,10 +24,10 @@ object ContractPlugin extends AutoPlugin {
   )
 
   def generate(generatorProject: Project): Def.Initialize[Task[Seq[(File, String)]]] = Def.taskDyn {
-    val outputDir   = s""" "${target.value}/$generateContractDirName""""
-    val resourceDir = "src/main/resources"
+    val outputDir = s""" "${target.value}/$generateContractDirName""""
+
     Def.task {
-      (generatorProject / Compile / run).toTask(s" $outputDir $resourceDir").value
+      (generatorProject / Compile / run).toTask(s" $outputDir").value
       Path.contentOf(target.value / generateContractDirName)
     }
   }
