@@ -2,10 +2,9 @@ package org.tmt.sbt.docs
 
 import _root_.io.github.jonas.paradox.material.theme.ParadoxMaterialThemePlugin
 import _root_.io.github.jonas.paradox.material.theme.ParadoxMaterialThemePlugin.autoImport._
-import com.lightbend.paradox.sbt.ParadoxPlugin
 import com.lightbend.paradox.sbt.ParadoxPlugin.autoImport._
 import com.typesafe.sbt.site.paradox.ParadoxSitePlugin
-import com.typesafe.sbt.site.paradox.ParadoxSitePlugin.autoImport._
+import com.typesafe.sbt.site.paradox.ParadoxSitePlugin.autoImport.Paradox
 import org.tmt.sbt.docs.DocKeys._
 import sbt.Keys.{baseDirectory, scalaBinaryVersion, sourceDirectory, version}
 import sbt._
@@ -16,7 +15,7 @@ import sbt._
  */
 object ParadoxMaterialSitePlugin extends AutoPlugin {
 
-  override def requires: Plugins = ParadoxPlugin && ParadoxMaterialThemePlugin && ParadoxSitePlugin
+  override def requires: Plugins = ParadoxSitePlugin && ParadoxMaterialThemePlugin
 
   override def projectSettings: Seq[Setting[_]] =
     ParadoxMaterialThemePlugin.paradoxMaterialThemeSettings(Compile) ++
@@ -28,7 +27,7 @@ object ParadoxMaterialSitePlugin extends AutoPlugin {
             .withFavicon("assets/tmt_favicon.ico")
             .withRepository(new URI(gitCurrentRepo.value))
         },
-        Compile / paradox / paradoxProperties ++= Map(
+        paradoxProperties ++= Map(
           "version"                      -> version.value,
           "scala.binaryVersion"          -> scalaBinaryVersion.value,
           "scaladoc.base_url"            -> s"https://tmtsoftware.github.io/${docsParentDir.value}/${version.value}/api/scala",
