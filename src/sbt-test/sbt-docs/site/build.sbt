@@ -13,11 +13,12 @@ lazy val site = project
   .enablePlugins(UnidocSitePlugin, GithubPublishPlugin)
   .settings(Settings.makeSiteMappings(docs))
 
-lazy val api = project.enablePlugins(DocsPlugin)
+lazy val api = project.enablePlugins(UnidocSitePlugin)
 
 lazy val docs = project
   .enablePlugins(ParadoxMaterialSitePlugin)
   .settings(
+    paradoxRoots := List("a.html"),
     paradoxLeadingBreadcrumbs := List("Alphabet" -> "https://abc.xyz/", "Google" -> "https://www.google.com"),
     paradoxTheme := None
   )

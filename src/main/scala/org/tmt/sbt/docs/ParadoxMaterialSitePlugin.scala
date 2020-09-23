@@ -2,6 +2,7 @@ package org.tmt.sbt.docs
 
 import _root_.io.github.jonas.paradox.material.theme.ParadoxMaterialThemePlugin
 import _root_.io.github.jonas.paradox.material.theme.ParadoxMaterialThemePlugin.autoImport._
+import com.lightbend.paradox.sbt.ParadoxPlugin
 import com.lightbend.paradox.sbt.ParadoxPlugin.autoImport._
 import com.typesafe.sbt.site.paradox.ParadoxSitePlugin
 import com.typesafe.sbt.site.paradox.ParadoxSitePlugin.autoImport._
@@ -15,20 +16,19 @@ import sbt._
  */
 object ParadoxMaterialSitePlugin extends AutoPlugin {
 
-  override def requires: Plugins = ParadoxSitePlugin && ParadoxMaterialThemePlugin
+  override def requires: Plugins = ParadoxPlugin && ParadoxMaterialThemePlugin && ParadoxSitePlugin
 
   override def projectSettings: Seq[Setting[_]] =
-    ParadoxMaterialThemePlugin.paradoxMaterialThemeSettings(Paradox) ++
+    ParadoxMaterialThemePlugin.paradoxMaterialThemeSettings(Compile) ++
       Seq(
-        sourceDirectory in Paradox := baseDirectory.value / "src" / "main",
-        sourceDirectory in (Paradox, paradoxTheme) := (sourceDirectory in Paradox).value / "_template",
-        paradoxMaterialTheme in Paradox := {
-          val repo = gitCurrentRepo.value
-          (paradoxMaterialTheme in Paradox).value
+        Compile / paradox / sourceDirectory := baseDirectory.value / "src" / "main",
+        Compile / paradox / paradoxTheme / sourceDirectory := (Compile / paradox / sourceDirectory).value / "_template",
+        Compile / paradox / paradoxMaterialTheme := {
+          ParadoxMaterialTheme()
             .withFavicon("assets/tmt_favicon.ico")
-            .withRepository(new URI(repo))
+            .withRepository(new URI(gitCurrentRepo.value))
         },
-        paradoxProperties in Paradox ++= Map(
+        Compile / paradox / paradoxProperties ++= Map(
           "version"                      -> version.value,
           "scala.binaryVersion"          -> scalaBinaryVersion.value,
           "scaladoc.base_url"            -> s"https://tmtsoftware.github.io/${docsParentDir.value}/${version.value}/api/scala",
@@ -38,7 +38,7 @@ object ParadoxMaterialSitePlugin extends AutoPlugin {
           "extref.csw.base_url"          -> s"https://tmtsoftware.github.io/csw/${readVersion("CSW_VERSION")}/%s",
           "extref.esw.base_url"          -> s"https://tmtsoftware.github.io/esw/${readVersion("ESW_VERSION")}/%s",
           "extref.csw_scaladoc.base_url" -> s"https://tmtsoftware.github.io/csw/${readVersion("CSW_VERSION")}/api/scala/%s",
-          "extref.csw_javadoc.base_url" -> s"https://tmtsoftware.github.io/csw/${readVersion("CSW_VERSION")}/api/java/%s"
+          "extref.csw_javadoc.base_url"  -> s"https://tmtsoftware.github.io/csw/${readVersion("CSW_VERSION")}/api/java/%s"
         )
       )
 
