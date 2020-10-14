@@ -1,4 +1,4 @@
-###Steps to release sbt-docs:
+### Steps to release sbt-docs:
 
 1. Make sure `dev` ci pipeline is green.
 1. Change release version in `build.sbt`. For example, if you want to release version 1.0.0
