@@ -4,7 +4,6 @@ import _root_.io.github.jonas.paradox.material.theme.ParadoxMaterialThemePlugin
 import _root_.io.github.jonas.paradox.material.theme.ParadoxMaterialThemePlugin.autoImport._
 import com.lightbend.paradox.sbt.ParadoxPlugin.autoImport._
 import com.typesafe.sbt.site.paradox.ParadoxSitePlugin
-import com.typesafe.sbt.site.paradox.ParadoxSitePlugin.autoImport.Paradox
 import org.tmt.sbt.docs.DocKeys._
 import sbt.Keys.{baseDirectory, scalaBinaryVersion, sourceDirectory, version}
 import sbt._
@@ -27,7 +26,7 @@ object ParadoxMaterialSitePlugin extends AutoPlugin {
             .withFavicon("assets/tmt_favicon.ico")
             .withRepository(new URI(gitCurrentRepo.value))
         },
-        paradoxProperties ++= Map(
+        Compile / paradoxProperties ++= Map(
           "version"                      -> version.value,
           "scala.binaryVersion"          -> scalaBinaryVersion.value,
           "scaladoc.base_url"            -> s"https://tmtsoftware.github.io/${docsParentDir.value}/${version.value}/api/scala",
