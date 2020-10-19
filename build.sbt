@@ -26,3 +26,7 @@ addSbtPlugin("com.typesafe.sbt"      % "sbt-site"                   % "1.4.0")
 addSbtPlugin("com.lightbend.paradox" % "sbt-paradox"                % "0.8.0")
 addSbtPlugin("io.bullet"             % "sbt-paradox-material-theme" % "0.7.0")
 addSbtPlugin("com.eed3si9n"          % "sbt-unidoc"                 % "0.4.3")
+
+libraryDependencies += "com.sun.activation" % "javax.activation" % "1.2.0"
+resolvers += "Jenkins repo" at "https://repo.jenkins-ci.org/public/"
+addSbtPlugin("ohnosequences" % "sbt-github-release" % "0.7.0")
