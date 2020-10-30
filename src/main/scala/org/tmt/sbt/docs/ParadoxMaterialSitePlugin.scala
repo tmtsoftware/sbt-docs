@@ -27,12 +27,23 @@ object ParadoxMaterialSitePlugin extends AutoPlugin {
             .withRepository(new URI(gitCurrentRepo.value))
         },
         Compile / paradoxProperties ++= Map(
-          "version"                      -> version.value,
-          "scala.binaryVersion"          -> scalaBinaryVersion.value,
-          "scaladoc.base_url"            -> s"https://tmtsoftware.github.io/${docsParentDir.value}/${version.value}/api/scala",
-          "javadoc.base_url"             -> s"https://tmtsoftware.github.io/${docsParentDir.value}/${version.value}/api/java",
-          "github.dir.base_url"          -> githubBaseUrl(gitCurrentRepo.value, version.value, "tree"),
-          "github.base_url"              -> githubBaseUrl(gitCurrentRepo.value, version.value, "blob"),
+          "version"             -> version.value,
+          "scala.binaryVersion" -> scalaBinaryVersion.value,
+          "scaladoc.base_url"   -> s"https://tmtsoftware.github.io/${docsParentDir.value}/${version.value}/api/scala",
+          "javadoc.base_url"    -> s"https://tmtsoftware.github.io/${docsParentDir.value}/${version.value}/api/java",
+          "github.dir.base_url" -> githubBaseUrl(gitCurrentRepo.value, version.value, "tree"),
+          "github.base_url"     -> githubBaseUrl(gitCurrentRepo.value, version.value, "blob"),
+          "esw_backend_template.base_url" -> githubBaseUrl(
+            "https://github.com/tmtsoftware/esw-backend-template.g8",
+            readVersion("ESW_BACKEND_TEMPLATE_VERSION"),
+            "blob"
+          ),
+          "esw_ui_template.base_url" -> githubBaseUrl(
+            "https://github.com/tmtsoftware/esw-ui-template.g8",
+            readVersion("ESW_UI_TEMPLATE_VERSION"),
+            "blob"
+          ),
+          "extref.esw_ts.base_url"       -> s"https://tmtsoftware.github.io/esw-ts/${readVersion("ESW_TS_VERSION")}/%s",
           "extref.csw.base_url"          -> s"https://tmtsoftware.github.io/csw/${readVersion("CSW_VERSION")}/%s",
           "extref.esw.base_url"          -> s"https://tmtsoftware.github.io/esw/${readVersion("ESW_VERSION")}/%s",
           "extref.csw_scaladoc.base_url" -> s"https://tmtsoftware.github.io/csw/${readVersion("CSW_VERSION")}/api/scala/%s",
@@ -40,7 +51,8 @@ object ParadoxMaterialSitePlugin extends AutoPlugin {
         )
       )
 
-  // export CSW_VERSION env variable which is compatible with csw
+  // export <DEPENDENT_REPO>_VERSION env variable which is compatible with RELEASED REPO
+  // For example, if you are releasing ESW, export CSW_VERSION which is compatible with release of ESW
   private def readVersion(envVersionKey: String): String =
     (sys.env ++ sys.props).get(envVersionKey) match {
       case Some(v) => v
