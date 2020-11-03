@@ -43,6 +43,11 @@ object ParadoxMaterialSitePlugin extends AutoPlugin {
             readVersion("ESW_UI_TEMPLATE_VERSION"),
             "blob"
           ),
+          "csw_template.base_url" -> githubBaseUrl(
+            "https://github.com/tmtsoftware/csw.g8",
+            readVersion("CSW_TEMPLATE_VERSION"),
+            "blob"
+          ),
           "extref.esw_ts.base_url"       -> s"https://tmtsoftware.github.io/esw-ts/${readVersion("ESW_TS_VERSION")}/%s",
           "extref.csw.base_url"          -> s"https://tmtsoftware.github.io/csw/${readVersion("CSW_VERSION")}/%s",
           "extref.esw.base_url"          -> s"https://tmtsoftware.github.io/esw/${readVersion("ESW_VERSION")}/%s",
