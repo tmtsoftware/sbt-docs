@@ -11,9 +11,9 @@ This plugin requires sbt 1.0.0+
 ### Setup
 Create `project/plugins.sbt`:
 
-```sbt 
+```sbt
 resolvers += Resolver.bintrayRepo("twtmt", "sbt-plugins")
-addSbtPlugin("com.github.tmtsoftware" % "sbt-docs" % "0.2.0-M1")
+addSbtPlugin("com.github.tmtsoftware" % "sbt-docs" % "0.2.0-RC1")
 ```
 
 Inside `build.sbt`, add `DocsPlugin` to a subproject:
@@ -32,7 +32,7 @@ lazy val docs = project
 - *docsRepo*: The remote git repository where documents will be published"
 - *docsParentDir*: Parent directory where generated documentation will be published
 - *gitCurrentRepo*: The remote git repository associated with this project
-    
+
 ### Testing
 
 Run `test` for regular unit tests.
@@ -45,7 +45,7 @@ Run `scripted` for [sbt script tests](http://www.scala-sbt.org/1.x/docs/Testing-
 
 1. publish your source to GitHub
 2. [create a bintray account](https://bintray.com/signup/index) and [set up bintray credentials](https://github.com/sbt/sbt-bintray#publishing)
-3. create a bintray repository `sbt-plugins` 
+3. create a bintray repository `sbt-plugins`
 4. update your bintray publishing settings in `build.sbt`
 5. `sbt publish`
 6. [request inclusion in sbt-plugin-releases](https://bintray.com/sbt/sbt-plugin-releases)
