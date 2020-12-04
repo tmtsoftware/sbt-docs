@@ -13,7 +13,7 @@ Create `project/plugins.sbt`:
 
 ```sbt
 resolvers += Resolver.bintrayRepo("twtmt", "sbt-plugins")
-addSbtPlugin("com.github.tmtsoftware" % "sbt-docs" % "0.2.0-RC1")
+addSbtPlugin("com.github.tmtsoftware" % "sbt-docs" % "0.2.0")
 ```
 
 Inside `build.sbt`, add `DocsPlugin` to a subproject:
