@@ -23,9 +23,6 @@ publishM2Configuration := publishM2Configuration.value.withResolverName(LocalMav
 // ScalaTest
 libraryDependencies += "org.scalatest" %% "scalatest" % "3.2.2" % "test"
 
-bintrayPackageLabels := Seq("sbt", "plugin")
-bintrayVcsUrl := Some("""git@github.com:org.tmt/sbt-docs.git""")
-
 initialCommands in console := """import org.tmt.sbt.docs._"""
 
 enablePlugins(ScriptedPlugin)
