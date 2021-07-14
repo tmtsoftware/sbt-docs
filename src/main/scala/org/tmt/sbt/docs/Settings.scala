@@ -12,21 +12,21 @@ object Settings {
 
   def makeSiteMappings(project: Project = null): Seq[Def.Setting[_]] = Def.settings {
     Seq(
-      mappings in makeSite := {
-        val Version = version.value
+      makeSite / mappings := {
+        val Version      = version.value
         val siteMappings =
           Def.taskDyn {
-            val default = (mappings in makeSite).value
+            val default = (makeSite / mappings).value
             if (project == null) Def.task(default)
-            else Def.task(default ++ (mappings in makeSite in project).value)
+            else Def.task(default ++ (project / makeSite / mappings).value)
           }.value
 
         // copy all artifacts inside `parentDir` directory
-        val siteMappingsWithoutVersion = siteMappings.map {
-          case (file, output) => (file, s"/${docsParentDir.value}/" + output)
+        val siteMappingsWithoutVersion = siteMappings.map { case (file, output) =>
+          (file, s"/${docsParentDir.value}/" + output)
         }
-        val siteMappingsWithVersion = siteMappings.map {
-          case (file, output) => (file, s"/${docsParentDir.value}/" + Version + output)
+        val siteMappingsWithVersion    = siteMappings.map { case (file, output) =>
+          (file, s"/${docsParentDir.value}/" + Version + output)
         }
 
         // keep documentation for SNAPSHOT versions in SNAPSHOT directory. (Don't copy SNAPSHOT docs to top level)
@@ -38,9 +38,9 @@ object Settings {
   }
 
   def docExclusions(projects: Seq[ProjectReference]): Seq[Setting[_]] =
-    projects.map(p => sources in (Compile, doc) in p := Seq.empty) ++ Seq(
-      unidocProjectFilter in (ScalaUnidoc, unidoc) := inAnyProject -- inProjects(projects: _*),
-      unidocProjectFilter in (JavaUnidoc, unidoc) := inAnyProject -- inProjects(projects: _*)
+    projects.map(p => p / Compile / doc / sources := Seq.empty) ++ Seq(
+      ScalaUnidoc / unidoc / unidocProjectFilter := inAnyProject -- inProjects(projects: _*),
+      JavaUnidoc / unidoc / unidocProjectFilter := inAnyProject -- inProjects(projects: _*)
     )
 
 }

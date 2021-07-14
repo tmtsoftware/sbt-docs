@@ -23,7 +23,7 @@ publishM2Configuration := publishM2Configuration.value.withResolverName(LocalMav
 // ScalaTest
 libraryDependencies += "org.scalatest" %% "scalatest" % "3.2.9" % "test"
 
-initialCommands in console := "import org.tmt.sbt.docs._"
+console / initialCommands := "import org.tmt.sbt.docs._"
 
 enablePlugins(ScriptedPlugin)
 // set up 'scripted; sbt plugin for testing sbt plugins

@@ -1,14 +1,13 @@
 package org.tmt.sbt.docs
 
-import java.io.File
-import java.nio.file.Files
-
 import ohnosequences.sbt.GithubRelease.keys.{ghreleaseAssets, githubRelease}
 import ohnosequences.sbt.SbtGithubReleasePlugin
 import sbt.Keys._
 import sbt.io.{IO, Path}
 import sbt.{AutoPlugin, Def, Plugins, ScopeFilter, Task, ThisProject, librarymanagement, _}
 
+import java.io.File
+import java.nio.file.Files
 import scala.collection.JavaConverters._
 
 object GithubRelease extends AutoPlugin {
@@ -22,7 +21,7 @@ object GithubRelease extends AutoPlugin {
 
   override def projectSettings: Seq[Setting[_]] =
     Seq(
-      aggregate in githubRelease := false,
+      githubRelease / aggregate := false,
       // this creates scoverage report zip file and required for GithubRelease task, it assumes that scoverage-report is already generated
       // and is available inside target folder (if it is not present, empty zip will be created)
       coverageReportZipKey := coverageReportZipTask.value,
@@ -51,7 +50,7 @@ object GithubRelease extends AutoPlugin {
 
       lazy val testReportZip = target.value / "ghrelease" / "test-reports.zip"
       val testReportHtml     = target.value / "ghrelease" / "test-reports.html"
-      val xmlFiles =
+      val xmlFiles           =
         target
           .all(aggregateFilter)
           .value

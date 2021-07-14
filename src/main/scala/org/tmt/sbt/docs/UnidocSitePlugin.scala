@@ -19,15 +19,15 @@ object UnidocSitePlugin extends AutoPlugin {
   def excludeScaladoc: String     = Seq("akka").mkString(":")
 
   override def projectSettings: Seq[Setting[_]] = Seq(
-    siteSubdirName in ScalaUnidoc := "/api/scala",
-    addMappingsToSiteDir(mappings in (ScalaUnidoc, packageDoc), siteSubdirName in ScalaUnidoc),
-    siteSubdirName in JavaUnidoc := "/api/java",
-    filterNotSources(sources in (JavaUnidoc, unidoc), excludeJavadoc),
-    javacOptions in (JavaUnidoc, unidoc) := {
+    ScalaUnidoc / siteSubdirName := "/api/scala",
+    addMappingsToSiteDir(ScalaUnidoc / packageDoc / mappings, ScalaUnidoc / siteSubdirName),
+    JavaUnidoc / siteSubdirName := "/api/java",
+    filterNotSources(JavaUnidoc / unidoc / sources, excludeJavadoc),
+    JavaUnidoc / unidoc / javacOptions := {
       Seq("-Xdoclint:none", "--ignore-source-errors", "--no-module-directories")
     },
-    addMappingsToSiteDir(mappings in (JavaUnidoc, packageDoc), siteSubdirName in JavaUnidoc),
-    scalacOptions in (ScalaUnidoc, unidoc) ++= Seq("-skip-packages", excludeScaladoc, "-Xfatal-warnings"),
+    addMappingsToSiteDir(JavaUnidoc / packageDoc / mappings, JavaUnidoc / siteSubdirName),
+    ScalaUnidoc / unidoc / scalacOptions ++= Seq("-skip-packages", excludeScaladoc, "-Xfatal-warnings"),
     autoAPIMappings := true
   )
 
