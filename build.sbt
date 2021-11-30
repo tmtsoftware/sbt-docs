@@ -36,6 +36,7 @@ addSbtPlugin("com.lightbend.paradox" % "sbt-paradox"                % "0.9.2")
 addSbtPlugin("io.bullet"             % "sbt-paradox-material-theme" % "0.7.0")
 addSbtPlugin("com.eed3si9n"          % "sbt-unidoc"                 % "0.4.3")
 
-libraryDependencies += "com.sun.activation" % "javax.activation"   % "1.2.0"
+libraryDependencies += "com.sun.activation" % "javax.activation" % "1.2.0"
+libraryDependencies += "org.parboiled"      % "parboiled-java"   % "1.3.2-jdk17"
 resolvers += "Jenkins repo" at "https://repo.jenkins-ci.org/public/"
-addSbtPlugin("ohnosequences"                % "sbt-github-release" % "0.7.0")
+addSbtPlugin("ohnosequences" % "sbt-github-release" % "0.7.0")
