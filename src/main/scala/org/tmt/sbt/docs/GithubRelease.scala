@@ -24,9 +24,9 @@ object GithubRelease extends AutoPlugin {
       githubRelease / aggregate := false,
       // this creates scoverage report zip file and required for GithubRelease task, it assumes that scoverage-report is already generated
       // and is available inside target folder (if it is not present, empty zip will be created)
-      coverageReportZipKey := coverageReportZipTask.value,
-      testReportsKey := testReportsTask.value,
-      rtmZipKey := requirementTestMappingZipTask.value
+      coverageReportZipKey      := coverageReportZipTask.value,
+      testReportsKey            := testReportsTask.value,
+      rtmZipKey                 := requirementTestMappingZipTask.value
     )
 
   private def requirementTestMappingZipTask =

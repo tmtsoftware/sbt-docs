@@ -9,8 +9,7 @@ import sbt.Keys.{baseDirectory, scalaBinaryVersion, sourceDirectory, version}
 import sbt._
 
 /**
- * Enables paradox documentation and material theme
- * also configures custom javadoc and scaladoc properties in paradoxSettings
+ * Enables paradox documentation and material theme also configures custom javadoc and scaladoc properties in paradoxSettings
  */
 object ParadoxMaterialSitePlugin extends AutoPlugin {
 
@@ -19,9 +18,9 @@ object ParadoxMaterialSitePlugin extends AutoPlugin {
   override def projectSettings: Seq[Setting[_]] =
     ParadoxMaterialThemePlugin.paradoxMaterialThemeSettings(Compile) ++
       Seq(
-        Compile / paradox / sourceDirectory := baseDirectory.value / "src" / "main",
+        Compile / paradox / sourceDirectory                := baseDirectory.value / "src" / "main",
         Compile / paradox / paradoxTheme / sourceDirectory := (Compile / paradox / sourceDirectory).value / "_template",
-        Compile / paradox / paradoxMaterialTheme := {
+        Compile / paradox / paradoxMaterialTheme           := {
           ParadoxMaterialTheme()
             .withFavicon("assets/tmt_favicon.ico")
             .withRepository(new URI(gitCurrentRepo.value))
@@ -66,7 +65,7 @@ object ParadoxMaterialSitePlugin extends AutoPlugin {
 
   private def githubBaseUrl(repo: String, version: String, baseForGithub: String) = {
     val baseRepoUrl =
-      s"$repo/$baseForGithub" //baseForGithub will be tree for a github directory and blob for a github file to avoid 301 redirect error on link validation
+      s"$repo/$baseForGithub" // baseForGithub will be tree for a github directory and blob for a github file to avoid 301 redirect error on link validation
     if (version.endsWith("SNAPSHOT")) s"$baseRepoUrl/master"
     else s"$baseRepoUrl/v$version"
   }

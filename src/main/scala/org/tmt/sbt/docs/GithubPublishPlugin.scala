@@ -17,10 +17,10 @@ object GithubPublishPlugin extends AutoPlugin {
   override def trigger = noTrigger
 
   override def projectSettings: Seq[Setting[_]] = Seq(
-    ghpagesBranch := "master",
+    ghpagesBranch                    := "master",
     ghpagesCleanSite / includeFilter := { pathname: File =>
       pathname.getAbsolutePath.contains(s"${docsParentDir.value}/${version.value}")
     },
-    GitKeys.gitRemoteRepo := docsRepo.value
+    GitKeys.gitRemoteRepo            := docsRepo.value
   )
 }
