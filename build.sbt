@@ -28,7 +28,7 @@ console / initialCommands := "import org.tmt.sbt.docs._"
 enablePlugins(ScriptedPlugin)
 // set up 'scripted; sbt plugin for testing sbt plugins
 scriptedLaunchOpts ++=
-  Seq("-Xmx1024M", "-Dplugin.version=" + version.value)
+  Seq("-Xmx1024M", "-Dplugin.version=" + version.value, "--add-opens=java.base/java.lang=ALL-UNNAMED")
 
 addSbtPlugin("com.typesafe.sbt"      % "sbt-ghpages"                % "0.6.3")
 addSbtPlugin("com.typesafe.sbt"      % "sbt-site"                   % "1.4.1")
