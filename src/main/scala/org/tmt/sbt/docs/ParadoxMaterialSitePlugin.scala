@@ -18,6 +18,10 @@ object ParadoxMaterialSitePlugin extends AutoPlugin {
   override def projectSettings: Seq[Setting[_]] =
     ParadoxMaterialThemePlugin.paradoxMaterialThemeSettings(Compile) ++
       Seq(
+        Compile / paradoxMaterialTheme := {
+          ParadoxMaterialTheme()
+            .withCustomStylesheet("assets/stylesheets/borer.css")
+        },
         Compile / paradox / sourceDirectory                := baseDirectory.value / "src" / "main",
         Compile / paradox / paradoxTheme / sourceDirectory := (Compile / paradox / sourceDirectory).value / "_template",
         Compile / paradox / paradoxMaterialTheme           := {
