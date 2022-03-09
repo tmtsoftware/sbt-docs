@@ -33,7 +33,6 @@ object ParadoxMaterialSitePlugin extends AutoPlugin {
           "javadoc.base_url"    -> s"https://tmtsoftware.github.io/${docsParentDir.value}/${version.value}/api/java",
           "github.dir.base_url" -> githubBaseUrl(gitCurrentRepo.value, version.value, "tree"),
           "github.base_url"     -> githubBaseUrl(gitCurrentRepo.value, version.value, "blob"),
-          "snip.github_link"    -> githubBaseUrl(gitCurrentRepo.value, version.value, "blob"),
           "esw_backend_template.base_url" -> githubBaseUrl(
             "https://github.com/tmtsoftware/esw-backend-template.g8",
             readVersion("ESW_BACKEND_TEMPLATE_VERSION"),
