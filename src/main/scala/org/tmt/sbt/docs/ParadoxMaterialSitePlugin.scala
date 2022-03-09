@@ -20,10 +20,10 @@ object ParadoxMaterialSitePlugin extends AutoPlugin {
       Seq(
         Compile / paradox / sourceDirectory                := baseDirectory.value / "src" / "main",
         Compile / paradox / paradoxTheme / sourceDirectory := (Compile / paradox / sourceDirectory).value / "_template",
-        Compile / paradox / paradoxMaterialTheme           := {
+        Compile / paradoxMaterialTheme           := {
           ParadoxMaterialTheme()
             .withFavicon("assets/tmt_favicon.ico")
-            .withCustomStylesheet("assets/stylesheets/docs.css")
+            .withCustomStylesheet("assets/docs.css")
             .withRepository(new URI(gitCurrentRepo.value))
         },
         Compile / paradoxProperties ++= Map(
