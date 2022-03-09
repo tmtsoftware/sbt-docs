@@ -65,6 +65,7 @@ object ParadoxMaterialSitePlugin extends AutoPlugin {
     }
 
   private def githubBaseUrl(repo: String, version: String, baseForGithub: String) = {
+    println(s"version picked by sbt-docs: repo: ${repo} version: ${version} base: ${baseForGithub}")
     val baseRepoUrl =
       s"$repo/$baseForGithub" // baseForGithub will be tree for a github directory and blob for a github file to avoid 301 redirect error on link validation
     if (version.endsWith("SNAPSHOT")) s"$baseRepoUrl/master"
