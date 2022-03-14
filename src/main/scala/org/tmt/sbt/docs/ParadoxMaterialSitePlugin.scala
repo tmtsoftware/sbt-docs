@@ -33,15 +33,15 @@ object ParadoxMaterialSitePlugin extends AutoPlugin {
           "scala.binaryVersion" -> scalaBinaryVersion.value,
           "scaladoc.base_url"   -> s"https://tmtsoftware.github.io/${docsParentDir.value}/${version.value}/api/scala",
           "javadoc.base_url"    -> s"https://tmtsoftware.github.io/${docsParentDir.value}/${version.value}/api/java",
-          "github.dir.base_url" -> githubBaseUrl(gitCurrentRepo.value, version.value, "tree"),
-          "github.base_url"     -> githubBaseUrl(gitCurrentRepo.value, version.value, "tree"),
+          "github.dir.base_url" -> githubBaseUrl(gitCurrentRepo.value, version.value, "tree", gitCurrentBranch.value),
+          "github.base_url"     -> githubBaseUrl(gitCurrentRepo.value, version.value, "tree", gitCurrentBranch.value),
           "esw_backend_template.base_url" -> githubBaseUrl(
-            "https://github.com/tmtsoftware/esw-backend-template.g8",
+            "https://github.com/tmtsoftware/esw-web-app-template.g8",
             readVersion("ESW_BACKEND_TEMPLATE_VERSION"),
-            "blob"
+            "blob",
           ),
           "esw_ui_template.base_url" -> githubBaseUrl(
-            "https://github.com/tmtsoftware/esw-ui-template.g8",
+            "https://github.com/tmtsoftware/esw-gateway-ui-template.g8",
             readVersion("ESW_UI_TEMPLATE_VERSION"),
             "blob"
           ),
@@ -66,10 +66,10 @@ object ParadoxMaterialSitePlugin extends AutoPlugin {
       case None    => "0.1.0-SNAPSHOT"
     }
 
-  private def githubBaseUrl(repo: String, version: String, baseForGithub: String) = {
+  private def githubBaseUrl(repo: String, version: String, baseForGithub: String, branch: String = "master") = {
     val baseRepoUrl =
       s"$repo/$baseForGithub" // baseForGithub will be tree for a github directory and blob for a github file to avoid 301 redirect error on link validation
     if (version.endsWith("SNAPSHOT")) s"$baseRepoUrl/master"
-    else s"$baseRepoUrl/${gitCurrentBranch.value}"
+    else s"$baseRepoUrl/${branch}"
   }
 }
