@@ -1,12 +1,13 @@
 package org.tmt.sbt.docs
 
 import _root_.io.github.jonas.paradox.material.theme.ParadoxMaterialThemePlugin
-import _root_.io.github.jonas.paradox.material.theme.ParadoxMaterialThemePlugin.autoImport._
-import com.lightbend.paradox.sbt.ParadoxPlugin.autoImport._
+import _root_.io.github.jonas.paradox.material.theme.ParadoxMaterialThemePlugin.autoImport.*
+import com.lightbend.paradox.sbt.ParadoxPlugin.autoImport.*
+import com.typesafe.sbt.SbtGit.GitKeys.gitCurrentBranch
 import com.typesafe.sbt.site.paradox.ParadoxSitePlugin
-import org.tmt.sbt.docs.DocKeys._
+import org.tmt.sbt.docs.DocKeys.*
 import sbt.Keys.{baseDirectory, scalaBinaryVersion, sourceDirectory, version}
-import sbt._
+import sbt.*
 
 /**
  * Enables paradox documentation and material theme also configures custom javadoc and scaladoc properties in paradoxSettings
@@ -23,16 +24,17 @@ object ParadoxMaterialSitePlugin extends AutoPlugin {
         Compile / paradoxMaterialTheme := {
           ParadoxMaterialTheme()
             .withFavicon("assets/tmt_favicon.ico")
-            .withCustomStylesheet("assets/docs.css")
+            .withCustomStylesheet("assets/custom.css")
             .withRepository(new URI(gitCurrentRepo.value))
         },
+        Compile / paradox / paradoxValidationIgnorePaths := List(s"${gitCurrentRepo.value}/.*".r),
         Compile / paradoxProperties ++= Map(
           "version"             -> version.value,
           "scala.binaryVersion" -> scalaBinaryVersion.value,
           "scaladoc.base_url"   -> s"https://tmtsoftware.github.io/${docsParentDir.value}/${version.value}/api/scala",
           "javadoc.base_url"    -> s"https://tmtsoftware.github.io/${docsParentDir.value}/${version.value}/api/java",
           "github.dir.base_url" -> githubBaseUrl(gitCurrentRepo.value, version.value, "tree"),
-          "github.base_url"     -> githubBaseUrl(gitCurrentRepo.value, version.value, "blob"),
+          "github.base_url"     -> githubBaseUrl(gitCurrentRepo.value, version.value, "tree"),
           "esw_backend_template.base_url" -> githubBaseUrl(
             "https://github.com/tmtsoftware/esw-backend-template.g8",
             readVersion("ESW_BACKEND_TEMPLATE_VERSION"),
@@ -65,10 +67,9 @@ object ParadoxMaterialSitePlugin extends AutoPlugin {
     }
 
   private def githubBaseUrl(repo: String, version: String, baseForGithub: String) = {
-    println(s"version picked by sbt-docs: repo: ${repo} version: ${version} base: ${baseForGithub}")
     val baseRepoUrl =
       s"$repo/$baseForGithub" // baseForGithub will be tree for a github directory and blob for a github file to avoid 301 redirect error on link validation
     if (version.endsWith("SNAPSHOT")) s"$baseRepoUrl/master"
-    else s"$baseRepoUrl/v$version"
+    else s"$baseRepoUrl/${gitCurrentBranch.value}"
   }
 }
