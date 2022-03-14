@@ -27,7 +27,7 @@ object ParadoxMaterialSitePlugin extends AutoPlugin {
             .withCustomStylesheet("assets/custom.css")
             .withRepository(new URI(gitCurrentRepo.value))
         },
-        Compile / paradox / paradoxValidationIgnorePaths := List(s"${gitCurrentRepo.value}/.*".r),
+        Compile / paradoxValidationIgnorePaths := List(s"${gitCurrentRepo.value}/.*".r),
         Compile / paradoxProperties ++= Map(
           "version"             -> version.value,
           "scala.binaryVersion" -> scalaBinaryVersion.value,
