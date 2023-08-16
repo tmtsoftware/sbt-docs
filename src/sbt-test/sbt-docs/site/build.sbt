@@ -3,9 +3,9 @@ import org.tmt.sbt.docs.DocKeys._
 
 name := "Docs Test"
 version := "0.1.0-SNAPSHOT"
-docsRepo in ThisBuild := "https://github.com/tmtsoftware/sbt-docs"
-docsParentDir in ThisBuild := "sbt-docs"
-gitCurrentRepo in ThisBuild := "https://github.com/tmtsoftware/sbt-docs"
+ThisBuild / docsRepo  := "https://github.com/tmtsoftware/sbt-docs"
+ThisBuild / docsParentDir := "sbt-docs"
+ThisBuild / gitCurrentRepo := "https://github.com/tmtsoftware/sbt-docs"
 
 lazy val site = project
   .in(file("."))

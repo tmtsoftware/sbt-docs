@@ -1,15 +1,15 @@
 package org.tmt.sbt.docs
 
-import org.tmt.sbt.docs.DocKeys._
-import sbt.Keys._
-import sbt._
+import org.tmt.sbt.docs.DocKeys.*
+import sbt.Keys.*
+import sbt.*
 
 /**
  * Configures GhpagesPlugin to publish documents to user provided git repo inside provided directory
  */
 object GithubPublishPlugin extends AutoPlugin {
-  import com.typesafe.sbt.SbtGit.GitKeys
-  import com.typesafe.sbt.sbtghpages.GhpagesPlugin
+  import com.github.sbt.git.SbtGit.GitKeys
+  import com.github.sbt.sbtghpages.GhpagesPlugin
   import GhpagesPlugin.autoImport._
 
   override def requires: Plugins = GhpagesPlugin
