@@ -16,7 +16,7 @@ object UnidocSitePlugin extends AutoPlugin {
   override def requires: Plugins = ScalaUnidocPlugin && JavaUnidocPlugin
 
   def excludeJavadoc: Set[String] = Set("internal", "scaladsl")
-  def excludeScaladoc: String     = Seq("org.apache.pekko").mkString(":")
+  def excludeScaladoc: String     = Seq("org.apache.pekko", "io.bullet.borer", "org.scalatest").mkString(":")
 
   override def projectSettings: Seq[Setting[_]] = Seq(
     ScalaUnidoc / siteSubdirName       := "/api/scala",
