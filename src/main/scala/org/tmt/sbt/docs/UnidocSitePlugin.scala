@@ -27,7 +27,7 @@ object UnidocSitePlugin extends AutoPlugin {
       Seq("-Xdoclint:none", "--ignore-source-errors")
     },
     addMappingsToSiteDir(JavaUnidoc / packageDoc / mappings, JavaUnidoc / siteSubdirName),
-    ScalaUnidoc / unidoc / scalacOptions ++= Seq(s"-skip-packages:$excludeScaladoc", "-Xfatal-warnings"),
+    ScalaUnidoc / unidoc / scalacOptions ++= Seq(s"-skip-by-id:$excludeScaladoc", "-Xfatal-warnings"),
     autoAPIMappings                    := true
   )
 
