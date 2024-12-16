@@ -21,7 +21,7 @@ resolvers += LocalMavenResolverForSbtPlugins
 publishM2Configuration := publishM2Configuration.value.withResolverName(LocalMavenResolverForSbtPlugins.name)
 
 // ScalaTest
-libraryDependencies += "org.scalatest" %% "scalatest" % "3.2.10" % "test"
+libraryDependencies += "org.scalatest" %% "scalatest" % "3.2.19" % "test"
 
 console / initialCommands := "import org.tmt.sbt.docs._"
 
@@ -31,8 +31,8 @@ scriptedLaunchOpts ++=
   Seq("-Xmx1024M", "-Dplugin.version=" + version.value, "--add-opens=java.base/java.lang=ALL-UNNAMED")
 
 addSbtPlugin("com.github.sbt" % "sbt-ghpages" % "0.8.0")
-addSbtPlugin("com.github.sbt" % "sbt-site-paradox" % "1.5.0")
-addSbtPlugin("com.lightbend.paradox" % "sbt-paradox" % "0.10.5")
+addSbtPlugin("com.github.sbt" % "sbt-site-paradox" % "1.7.0")
+addSbtPlugin("com.lightbend.paradox" % "sbt-paradox" % "0.10.7")
 addSbtPlugin("io.bullet" % "sbt-paradox-material-theme" % "0.7.0")
 addSbtPlugin("com.github.sbt" % "sbt-unidoc" % "0.5.0")
 
