@@ -13,7 +13,7 @@ Create `project/plugins.sbt`:
 
 ```sbt
 resolvers += "jitpack" at "https://jitpack.io"
-libraryDependencies += "com.github.tmtsoftware" % "sbt-docs" % "0.5.3"
+libraryDependencies += "com.github.tmtsoftware" % "sbt-docs" % "0.7.0"
 ```
 
 Inside `build.sbt`, add `DocsPlugin` to a subproject:

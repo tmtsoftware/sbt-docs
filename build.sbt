@@ -10,7 +10,7 @@ lazy val LocalMavenResolverForSbtPlugins = {
 
 name := "sbt-docs"
 organization := "com.github.tmtsoftware"
-version := "0.5.3"
+version := "0.7.0"
 description := "An sbt plugin for publishing markdown documentation to github pages"
 homepage := scmInfo.value map (_.browseUrl)
 scmInfo := Some(ScmInfo(url("https://github.com/tmtsoftware/sbt-docs"), "scm:git:git@github.com:tmtsoftware/sbt-docs.git"))
