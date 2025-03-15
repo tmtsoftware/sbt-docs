@@ -40,4 +40,4 @@ libraryDependencies += "com.sun.activation" % "javax.activation" % "1.2.0"
 libraryDependencies += "org.parboiled" % "parboiled-java" % "1.4.1"
 
 resolvers += "Jenkins repo" at "https://repo.jenkins-ci.org/public/"
-addSbtPlugin("ohnosequences" % "sbt-github-release" % "0.7.1")
+addSbtPlugin("ohnosequences" % "sbt-github-release" % "0.7.0")
