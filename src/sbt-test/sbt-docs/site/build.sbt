@@ -1,6 +1,7 @@
 import org.tmt.sbt.docs.Settings
 import org.tmt.sbt.docs.DocKeys._
 
+//scalaVersion := "3.6.4"
 name := "Docs Test"
 version := "0.1.0-SNAPSHOT"
 ThisBuild / docsRepo  := "https://github.com/tmtsoftware/sbt-docs"
