@@ -20,7 +20,7 @@ object UnidocSitePlugin extends AutoPlugin {
 
   override def projectSettings: Seq[Setting[_]] = Seq(
 //    ScalaUnidoc / siteSubdirName       := "/api/scala",
-    addMappingsToSiteDir(ScalaUnidoc / packageDoc / mappings, ScalaUnidoc / siteSubdirName),
+//    addMappingsToSiteDir(ScalaUnidoc / packageDoc / mappings, ScalaUnidoc / siteSubdirName),
 //    JavaUnidoc / siteSubdirName        := "/api/java",
     filterNotSources(JavaUnidoc / unidoc / sources, excludeJavadoc),
     JavaUnidoc / unidoc / javacOptions := {
