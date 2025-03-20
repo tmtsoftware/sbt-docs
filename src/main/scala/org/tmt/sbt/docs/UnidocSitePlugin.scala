@@ -19,9 +19,9 @@ object UnidocSitePlugin extends AutoPlugin {
   def excludeScaladoc: String     = Seq("org.apache.pekko", "io.bullet.borer", "org.scalatest").mkString(":")
 
   override def projectSettings: Seq[Setting[_]] = Seq(
-    ScalaUnidoc / siteSubdirName       := "api/scala",
+    ScalaUnidoc / siteSubdirName       := "/api/scala",
     addMappingsToSiteDir(ScalaUnidoc / packageDoc / mappings, ScalaUnidoc / siteSubdirName),
-    JavaUnidoc / siteSubdirName        := "api/java",
+    JavaUnidoc / siteSubdirName        := "/api/java",
     filterNotSources(JavaUnidoc / unidoc / sources, excludeJavadoc),
     JavaUnidoc / unidoc / javacOptions := {
       Seq("-Xdoclint:none", "--ignore-source-errors")
